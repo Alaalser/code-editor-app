@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AuthProvider = (props: PropsWithChildren<{}>) => {
-    const Navigate = useNavigate()
+  const navigate = useNavigate()
     const onRedirectCallback = (appState: any) => {
-        Navigate(appState?.returnTo || window.location.origin)
+        navigate(appState?.returnTo || `/code-editor`)
     }
 
   return (

@@ -6,10 +6,18 @@ import Loading from '../components/common/loading/Loading';
 import routes from './routes';
 import Header from '../components/common/Header/Header';
 import Home from '../pages/Home/Home';
+import CodeEditor from '../pages/CodeEditor/CodeEditor';
+
 
 const Routess = () => {
   const { isAuthenticated, isLoading } = useAuth0();
   const classes = useStyles();
+
+
+  console.log('auth',isAuthenticated);
+  console.log('load',isLoading);
+  
+  
 
   if (isLoading) {
     return <Loading />;
@@ -19,9 +27,9 @@ const Routess = () => {
       <Header />
       <div className={classes.page}>
         <Routes>
-          {/* <ProtectedRoute path={routes.codeEditor} element={<div>Home</div>} /> */}
-          <Route path={routes.codeEditor} element={<ProtectedRoute component={<div>Code Editor</div>} />} />
-          <Route path={routes.home} element={isAuthenticated ? <Navigate to={routes.codeEditor} /> : <Home />} />
+          <Route path={routes.codeEditor} element={<ProtectedRoute component={() => <CodeEditor/>} />} />
+          <Route path={routes.home} element={isAuthenticated ? <Navigate to={routes.codeEditor} replace={true} /> : <Home />} />
+          <Route path="*" element={<div style={{color:'red'}}>Page not found 404 </div>}/>
         </Routes>
       </div>
     </div>

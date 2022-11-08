@@ -1,13 +1,12 @@
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-import{ ComponentType, PropsWithChildren } from 'react';
+import{  PropsWithChildren } from 'react';
 import Loading from '../components/common/loading/Loading';
 
-const ProtectedRoute = (props: PropsWithChildren<{ [key: string]: any }>) => {
-  const { children, ...args } = props;
-  const MyProtectedComponent = withAuthenticationRequired(children as unknown as ComponentType, {
+const ProtectedRoute = ({ component }: PropsWithChildren<{ [key: string]: any }>) => {
+  const MyProtectedComponent = withAuthenticationRequired(component, {
     onRedirecting: () => <Loading />,
   });
-  return <MyProtectedComponent {...args} />;
+  return <MyProtectedComponent  />;
 };
 
 export default ProtectedRoute;

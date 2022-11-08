@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  codeEditor: './code-editor',
+  codeEditor: '/code-editor',
 };
 
 export default routes;
